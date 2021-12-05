@@ -1,0 +1,13 @@
+[
+	{
+		"name": "configure",
+		"description": "Configure your global settigns",
+		"options": [
+			{
+				"type": 5,
+				"name": "always_ping_in_reply",
+				"description": "You will now be pinged in all messages that are replied to you without a ping"
+			}
+		]
+	}
+]

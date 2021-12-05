@@ -1,0 +1,25 @@
+{
+	"name": "discordplus",
+	"version": "1.0.0",
+	"description": "enchanes the discord user experience",
+	"main": "src/index.ts",
+	"scripts": {
+		"watch": "tsc -w",
+		"prestart": "tsc",
+		"start": "node build/index.js",
+		"nobuild": "node build/index.js",
+		"dev": "nodemon build/index.js --ignore ./files",
+		"delete:build": "rimraf build/*"
+	},
+	"dependencies": {
+		"discord.js": "^13.1.0",
+		"dotenv": "^10.0.0",
+		"sqlite3": "^5.0.2"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.4",
+		"prettier": "^2.3.2",
+		"sequelize-cli": "^6.2.0",
+		"typescript": "^4.3.5"
+	}
+}
