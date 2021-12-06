@@ -39,7 +39,9 @@ export async function betterMessageLinks(client: Client, message: Message) {
 				components: fetchedMessage.components,
 				embeds: fetchedMessage.embeds,
 				username: fetchedMessage.member?.nickname ? `${fetchedMessage.member?.nickname} (${fetchedMessage.author.tag})` : fetchedMessage.author.tag,
-				avatarURL: fetchedMessage.author.avatarURL({ dynamic: true })!,
+				avatarURL:
+					fetchedMessage.author.avatarURL({ dynamic: true }) ||
+					`https://cdn.discordapp.com/embed/avatars/${Number(fetchedMessage.author.discriminator) % 5}.png`,
 			});
 		} catch (error) {
 			console.error(`[ERROR - Better Message Links] ${error}`);

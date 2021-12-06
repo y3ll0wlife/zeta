@@ -16,7 +16,7 @@ export async function betterReplies(client: Client, message: Message, db: Databa
 	if (settings.replies === 0) return;
 
 	try {
-		message.delete();
+		await message.delete();
 		const postChannel: TextChannel = message.channel as TextChannel;
 		const webhooks = await postChannel.fetchWebhooks();
 		let webhook = webhooks.first();
@@ -26,7 +26,7 @@ export async function betterReplies(client: Client, message: Message, db: Databa
 				avatar: "https://cdn.discordapp.com/avatars/897441411211866113/d639e559c4d58eb49a6c5ff1581a3d54.png?size=4096",
 			});
 
-		await webhook!.send({
+		await webhook.send({
 			content: `Replied to <@${message.mentions.repliedUser!.id}> from [here](https://discord.com/channels/${message.reference.guildId}/${
 				message.reference.channelId
 			}/${message.reference.messageId})\n${message.content}`,
@@ -34,7 +34,8 @@ export async function betterReplies(client: Client, message: Message, db: Databa
 			components: message.components,
 			embeds: message.embeds,
 			username: message.member?.nickname ? `${message.member?.nickname} (${message.author.tag})` : message.author.tag,
-			avatarURL: message.author.avatarURL({ dynamic: true })!,
+			avatarURL:
+				message.author.avatarURL({ dynamic: true }) || `https://cdn.discordapp.com/embed/avatars/${Number(message.author.discriminator) % 5}.png`,
 		});
 	} catch (error) {
 		console.error(`[ERROR - Better Replies] ${error}`);
