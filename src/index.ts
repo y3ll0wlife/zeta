@@ -17,7 +17,15 @@ db.serialize(() => {
 	console.log("[DATABASE] Database is up and running");
 });
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] });
+const client = new Client({
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
+	allowedMentions: {
+		parse: [],
+		repliedUser: false,
+		roles: [],
+		users: [],
+	},
+});
 
 client.on("ready", () => {
 	console.log(`[CLIENT] Logged in as ${client.user?.tag} (${client.user?.id})`);

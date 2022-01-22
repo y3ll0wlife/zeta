@@ -27,6 +27,9 @@ export async function betterReplies(client: Client, message: Message, db: Databa
 			});
 
 		await webhook.send({
+			allowedMentions: {
+				users: [message.mentions.repliedUser!.id],
+			},
 			content: `Replied to <@${message.mentions.repliedUser!.id}> from [here](https://discord.com/channels/${message.reference.guildId}/${
 				message.reference.channelId
 			}/${message.reference.messageId})\n${message.content}`,
